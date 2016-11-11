@@ -10,7 +10,7 @@
 
 #include "Particle.h"
 
-#include <SDL_Arduino_INA3221.h>
+#include <SDL_Particle.io_INA3221.h>
 
 SDL_Arduino_INA3221 ina3221;
 

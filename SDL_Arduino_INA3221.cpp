@@ -11,13 +11,7 @@
 	@license  BSD (see BSDlicense.txt)
 */
 
-#if ARDUINO >= 100
- #include "Arduino.h"
-#else
- #include "WProgram.h"
-#endif
-
-#include <Wire.h>
+#include "Particle.h"
 
 #include "SDL_Arduino_INA3221.h"
 
@@ -64,15 +58,11 @@ void SDL_Arduino_INA3221::begin(uint16_t config,
 void SDL_Arduino_INA3221::wireWriteRegister (uint8_t reg, uint16_t value)
 {
   Wire.beginTransmission(global.i2cAddr);
-  #if ARDUINO >= 100
+  
     Wire.write(reg);                       // Register
     Wire.write((value >> 8) & 0xFF);       // Upper 8-bits
     Wire.write(value & 0xFF);              // Lower 8-bits
-  #else
-    Wire.send(reg);                        // Register
-    Wire.send(value >> 8);                 // Upper 8-bits
-    Wire.send(value & 0xFF);               // Lower 8-bits
-  #endif
+  
   Wire.endTransmission();
 }
 
@@ -85,11 +75,9 @@ void SDL_Arduino_INA3221::wireReadRegister(uint8_t reg, uint16_t *value)
 {
 
   Wire.beginTransmission(global.i2cAddr);
-  #if ARDUINO >= 100
+  
     Wire.write(reg);                       // Register
-  #else
-    Wire.send(reg);                        // Register
-  #endif
+  
   Wire.endTransmission();
   
   delay(1); // Max 12-bit conversion time is 586us per sample
@@ -98,10 +86,6 @@ void SDL_Arduino_INA3221::wireReadRegister(uint8_t reg, uint16_t *value)
   #if ARDUINO >= 100
     // Shift values to create properly formed integer
     *value = ((Wire.read() << 8) | Wire.read());
-  #else
-    // Shift values to create properly formed integer
-    *value = ((Wire.receive() << 8) | Wire.receive());
-  #endif
 }
 
 /**************************************************************************/

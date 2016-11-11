@@ -8,9 +8,8 @@
 // This was designed for SunAirPlus - Solar Power Controller - www.switchdoc.com
 //
 
+#include "Particle.h"
 
-
-#include <Wire.h>
 #include <SDL_Arduino_INA3221.h>
 
 SDL_Arduino_INA3221 ina3221;

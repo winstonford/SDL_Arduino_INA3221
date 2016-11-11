@@ -2,6 +2,6 @@
   "name": "SDL_Particle.io_INA3221",
   "author": "Winston Ford <winston@canopyrising.com>",
   "license": "BSD",
-  "version": "2.2",
+  "version": "2.2.0",
   "description": "Libary to run the Texas Instruments INA3221 breakout board from SwitchDoc Labs http://a.co/gVxP3Ma"
 }
